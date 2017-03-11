@@ -5,13 +5,15 @@
       nu=0.01
       k=2.*pi
       c=1.0
+      dx=1./n
       time=5.0
       iter=time/dt
       do i=1,iter
       t=i*dt
-      do j=1,n
-        phi(j)=phi_0*exp(-nu*k**2*t)*cos(k*(j-c*t))
+        do j=1,n
+        x=j*dx
+        phi(j)=phi_0*exp(-nu*k**2*t)*cos(k*(x-c*t))
+        end do
       end do
-      
       stop
       end program
