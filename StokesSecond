@@ -1,0 +1,50 @@
+! ***********************************
+! coutte flow by simple Euler method 
+! 2016.10.22
+! ***********************************
+
+      include 'param.h'
+
+      call init
+
+      do n=1,nt
+
+      time=n*dt
+
+!     boundary condition
+      u(1 )=0.0; un(1)=0.0
+      u(ny)=amp*sin(2.*pi*time/wp); un(ny)=u(ny)
+
+      do j=2,ny-1
+
+      rh=cc*(u(j+1)+u(j-1)-2.*u(j)) + alfa*dt
+      un(j)=rh+u(j)   ! next time
+
+      enddo ! j
+
+      u=un  ! for next time
+
+      if(mod(n,np).eq.0) write(10,'(2000f8.3)') (u(j),j=1,ny)
+
+      enddo ! time
+
+      close(10)
+
+      stop
+      end
+
+! *******************************
+! initial condition for array
+! *******************************
+      subroutine init
+      include 'param.h'
+
+      u =0. ! zero clear
+      un=0. ! zero clear
+
+      open(10,file='flow.dat')
+
+      return
+      end
+
+ 
