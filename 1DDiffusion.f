@@ -1,6 +1,6 @@
       program diffusionLBM
         parameter (m=100)              ! m is the number of lattice nodes
-        real fo(0:m), f1(0:1), f2(0:m), rho(0:m), feq(0:m), x(0:m)
+        real f1(0:1), f2(0:m), rho(0:m), feq(0:m), x(0:m)
         integer i
         open(2,file='resultLBM.dat')
         dt=1.0
